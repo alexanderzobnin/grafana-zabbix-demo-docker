@@ -1,0 +1,117 @@
+version: "3"
+
+services:
+  # backend
+  redis_backend:
+    image: redis:alpine
+    restart: unless-stopped
+
+  zas_backend_01:
+    build: ./zas-agent
+    ports:
+      - "10061:10050"
+    volumes:
+      - ./zas-agent/conf/zas_scenario_backend.cfg:/etc/zas_scenario.cfg
+    environment:
+      REDIS_HOST: redis_backend
+    restart: unless-stopped
+
+  zas_backend_02:
+    build: ./zas-agent
+    ports:
+      - "10062:10050"
+    volumes:
+      - ./zas-agent/conf/zas_scenario_backend.cfg:/etc/zas_scenario.cfg
+    environment:
+      REDIS_HOST: redis_backend
+    restart: unless-stopped
+
+  zas_backend_03:
+    build: ./zas-agent
+    ports:
+      - "10063:10050"
+    volumes:
+      - ./zas-agent/conf/zas_scenario_backend.cfg:/etc/zas_scenario.cfg
+    environment:
+      REDIS_HOST: redis_backend
+    restart: unless-stopped
+
+  zas_backend_04:
+    build: ./zas-agent
+    ports:
+      - "10064:10050"
+    volumes:
+      - ./zas-agent/conf/zas_scenario_backend.cfg:/etc/zas_scenario.cfg
+    environment:
+      REDIS_HOST: redis_backend
+    restart: unless-stopped
+
+  # frontend
+  redis_frontend:
+    image: redis:alpine
+    restart: unless-stopped
+
+  zas_frontend_01:
+    build: ./zas-agent
+    ports:
+      - "10071:10050"
+    volumes:
+      - ./zas-agent/conf/zas_scenario_frontend.cfg:/etc/zas_scenario.cfg
+    environment:
+      REDIS_HOST: redis_frontend
+    restart: unless-stopped
+
+  zas_frontend_02:
+    build: ./zas-agent
+    ports:
+      - "10072:10050"
+    volumes:
+      - ./zas-agent/conf/zas_scenario_frontend.cfg:/etc/zas_scenario.cfg
+    environment:
+      REDIS_HOST: redis_frontend
+    restart: unless-stopped
+
+  zas_frontend_03:
+    build: ./zas-agent
+    ports:
+      - "10073:10050"
+    volumes:
+      - ./zas-agent/conf/zas_scenario_frontend.cfg:/etc/zas_scenario.cfg
+    environment:
+      REDIS_HOST: redis_frontend
+    restart: unless-stopped
+
+  zas_frontend_04:
+    build: ./zas-agent
+    ports:
+      - "10074:10050"
+    volumes:
+      - ./zas-agent/conf/zas_scenario_frontend.cfg:/etc/zas_scenario.cfg
+    environment:
+      REDIS_HOST: redis_frontend
+    restart: unless-stopped
+
+  # database
+  redis_database:
+    image: redis:alpine
+    restart: unless-stopped
+
+  zas_database_01:
+    build: ./zas-agent
+    ports:
+      - "10081:10050"
+    volumes:
+      - ./zas-agent/conf/zas_scenario_database.cfg:/etc/zas_scenario.cfg
+    environment:
+      REDIS_HOST: redis_database
+    restart: unless-stopped
+
+  zas_database_02:
+    build: ./zas-agent
+    ports:
+      - "10082:10050"
+    volumes:
+      - ./zas-agent/conf/zas_scenario_database.cfg:/etc/zas_scenario.cfg
+    environment:
+      REDIS_HOST: redis_database
+    restart: unless-stopped
